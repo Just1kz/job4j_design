@@ -5,18 +5,13 @@
 
 <module name="Checker">
 
-    <property name="charset" value="UTF-8"/>
-
+    <!--Расширение файла должно быть java, properties, xml-->
     <property name="fileExtensions" value="java, properties, xml"/>
 
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
     <module name="FileLength"/>
 
-    <module name="LineLength">
-        <property name="fileExtensions" value="java"/>
-        <property name="max" value="100"/>
-    </module>
     <!-- Checks for Headers                                -->
     <!-- See http://checkstyle.sf.net/config_header.html   -->
     <!-- <module name="Header"> -->
@@ -26,24 +21,15 @@
 
     <module name="TreeWalker">
 
-        <module name="DeclarationOrder"/>
-
-        <module name="EmptyLineSeparator">
-            <property name="tokens" value="
-            CLASS_DEF, ENUM_DEF, INTERFACE_DEF, CTOR_DEF, STATIC_INIT, INSTANCE_INIT, VARIABLE_DEF, METHOD_DEF"/>
-            <property name="allowNoEmptyLineBetweenFields" value="true"/>
-            <property name="allowMultipleEmptyLines" value="false"/>
-            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
-        </module>
-
-        <module name="VisibilityModifier"/>
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
         <module name="ConstantName"/>
         <!--<module name="LocalFinalVariableName"/>-->
         <module name="LocalVariableName"/>
         <module name="MemberName"/>
-        <module name="MethodName"/>
+        <module name="MethodName">
+            <property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/>
+        </module>
         <module name="PackageName">
             <property name="format" value="^[a-z]+(\.[a-z0-9]*)*$"/>
         </module>
@@ -55,7 +41,10 @@
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
         <!--<module name="LineLength"/>-->
         <module name="MethodLength"/>
-        <module name="ParameterNumber"/>
+        <module name="ParameterNumber">
+            <property name="max" value="10"/>
+            <property name="tokens" value="METHOD_DEF"/>
+        </module>
 
         <!-- Checks for whitespace                               -->
         <!-- See http://checkstyle.sf.net/config_whitespace.html -->
