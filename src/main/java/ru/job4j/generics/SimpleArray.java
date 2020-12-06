@@ -33,10 +33,7 @@ public class SimpleArray<T> implements Iterable<T> {
         array[sizeArray] = null;
     }
     public T get(int index) {
-        if (index > sizeArray - 1) {
-            throw new ArrayIndexOutOfBoundsException("Индекс больше размера "
-                    + "массива");
-        }
+        Objects.checkIndex(index, sizeArray);
         return (T) array[index];
     }
 
