@@ -1,11 +1,6 @@
-package ru.job4j;
-
-import ru.job4j.generics.Animal;
-import ru.job4j.generics.Predator;
-import ru.job4j.generics.Tiger;
+package ru.job4j.generics;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
