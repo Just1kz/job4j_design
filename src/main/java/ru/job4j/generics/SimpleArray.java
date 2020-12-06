@@ -1,6 +1,7 @@
 package ru.job4j.generics;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleArray<T> implements Iterable<T> {
     private Object[] array;
@@ -15,25 +16,17 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        if (sizeArray >= array.length) {
-            throw new ArrayIndexOutOfBoundsException("Массив переполнен");
-        }
+        Objects.checkIndex(sizeArray, array.length);
         array[sizeArray++] = model;
     }
 
     public void set(int index, T model) {
-        if (index > sizeArray - 1) {
-            throw new ArrayIndexOutOfBoundsException("Индекс больше размера "
-                    + "массива");
-        }
+        Objects.checkIndex(index, sizeArray);
         array[index] = model;
     }
 
     public void remove(int index) {
-        if (index > sizeArray - 1) {
-            throw new ArrayIndexOutOfBoundsException("Индекс больше размера "
-                    + "массива");
-        }
+        Objects.checkIndex(index, sizeArray);
         sizeArray--;
         System.arraycopy(array, index + 1, array,
                 index, sizeArray - index);
