@@ -2,7 +2,7 @@ package ru.job4j.generics;
 
 public class RoleStore implements Store<Role> {
 
-    private final Store<Role> storeRole= new MemStore<>();
+    private final Store<Role> storeRole = new MemStore<>();
 
     @Override
     public void add(Role model) {
