@@ -33,21 +33,21 @@ public class ListUtilsTest {
 
     @Test
     public void whenRemoveIf() {
-        List<Integer> input = new ArrayList<>(Arrays.asList(1, 3, -1 , 0, -2 , 3 , 5, -5));
+        List<Integer> input = new ArrayList<>(Arrays.asList(1, 3, -1, 0, -2, 3, 5, -5));
         ListUtils.removeIf(input, x -> x < 0);
         assertThat(Arrays.asList(1, 3, 0, 3, 5), Is.is(input));
     }
 
     @Test
     public void whenReplaceIf() {
-        List<Integer> input = new ArrayList<>(Arrays.asList(1, 3, -1 , 0, -2 , 3 , 5, -5));
+        List<Integer> input = new ArrayList<>(Arrays.asList(1, 3, -1, 0, -2, 3, 5, -5));
         ListUtils.replaceIf(input, x -> x < 0, 5);
         assertThat(Arrays.asList(1, 3, 5, 0, 5, 3, 5, 5), Is.is(input));
     }
 
     @Test
     public void whenRemoveAll() {
-        List<Integer> input1 = new ArrayList<>(Arrays.asList(1, 3, -1 , 0, -2 , 3 , 5, -5));
+        List<Integer> input1 = new ArrayList<>(Arrays.asList(1, 3, -1, 0, -2, 3, 5, -5));
         List<Integer> input2 = new ArrayList<>(Arrays.asList(1, 0, 3));
         ListUtils.removeAll(input1, input2);
         assertThat(Arrays.asList(-1, -2, 5, -5), Is.is(input1));
