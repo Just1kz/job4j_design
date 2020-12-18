@@ -7,10 +7,10 @@ public class SimpleQueue<T> {
     public T poll() {
         if (out.isEmpty()) {
             while (!in.isEmpty()) {
-                out.push(in.pop());
+                out.push(in.poll());
             }
         }
-        return out.pop();
+        return out.poll();
     }
 
     public void push(T value) {
