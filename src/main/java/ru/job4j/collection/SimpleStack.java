@@ -12,6 +12,6 @@ public class SimpleStack<T> {
     }
 
     public boolean isEmpty() {
-        return linked.getHead() == null;
+        return linked.isEmpty();
     }
 }
