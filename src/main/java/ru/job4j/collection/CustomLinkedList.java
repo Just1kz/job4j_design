@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class CustomLinkedList<T> implements Iterable<T> {
-    private Node<T> first = null;
-    private Node<T> last = null;
-    private int modCount = 0;
-    public int sizeList = 0;
+    private Node<T> first;
+    private Node<T> last;
+    private int modCount;
+    public int sizeList;
 
     public void add(T value) {
         Node<T> newNode = new Node<>(value);
@@ -34,7 +34,6 @@ public class CustomLinkedList<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             private Node<T> lastReturned = first;
-            private Node<T> nodeInMemory = null;
             private final int expectedModCount = modCount;
 
             @Override
@@ -49,8 +48,6 @@ public class CustomLinkedList<T> implements Iterable<T> {
                     throw new NoSuchElementException();
                 }
                 T result = lastReturned.data;
-                Node<T> temp = nodeInMemory;
-                nodeInMemory = lastReturned;
                 lastReturned = lastReturned.next;
                 return result;
             }
