@@ -45,10 +45,10 @@ public class User {
         return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
     }
 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(name, children, birthday);
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
 
     public static void main(String[] args) {
         Map<User, Object> map1 = new HashMap<>();
