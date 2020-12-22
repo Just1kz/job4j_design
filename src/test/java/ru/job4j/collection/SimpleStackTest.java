@@ -24,7 +24,6 @@ public class SimpleStackTest {
         assertThat(stack.poll(), is(2));
     }
 
-    @Ignore
     @Test
     public void whenPushPushThenPollPoll() {
         SimpleStack<Integer> stack = new SimpleStack<>();
