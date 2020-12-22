@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class SimpleHashMap<K, V> implements Iterable {
     private Node<K, V>[] container;
-    private static final double loadFactor = 0.75;
+    private static final double LOAD_F = 0.75;
     private int initialCapacity = 16;
 
     public SimpleHashMap() {
@@ -20,9 +20,9 @@ public class SimpleHashMap<K, V> implements Iterable {
             container[input] = node;
         } else {
             Node<K, V>[] oldContainer = container;
-            this.initialCapacity = initialCapacity*2;
+            this.initialCapacity = initialCapacity * 2;
             container = new Node[this.initialCapacity];
-            for (int i = 0; i < oldContainer.length; i ++) {
+            for (int i = 0; i < oldContainer.length; i++) {
                 if (oldContainer[i] != null) {
                     int inputNew =  oldContainer[i].key.hashCode() % container.length;
                     container[inputNew] = oldContainer[i];
@@ -50,7 +50,7 @@ public class SimpleHashMap<K, V> implements Iterable {
                 count++;
             }
         }
-        return !((double) count / container.length >= loadFactor);
+        return !((double) count / container.length >= LOAD_F);
     }
 
     @Override
