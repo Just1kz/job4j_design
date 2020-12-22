@@ -12,7 +12,7 @@ public class ResultFile {
             }
         }
         try (FileOutputStream out = new FileOutputStream("result.txt")) {
-            out.write("Hello, job4j!".getBytes());
+            out.write("Hello, job4j! ".getBytes());
             for (int j : rsl) {
                 String x = Integer.toString(j) + " ";
                 out.write(x.getBytes());
