@@ -13,7 +13,7 @@ public class SimpleSet<T> implements Iterable<T> {
 
     public boolean contains(T value) {
         if (rsl.getLengthArray() != 0) {
-            for(T xxx : rsl) {
+            for (T xxx : rsl) {
                 if (!xxx.equals(value)) {
                     return false;
                 }
