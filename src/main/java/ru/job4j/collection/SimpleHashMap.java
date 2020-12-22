@@ -8,6 +8,7 @@ public class SimpleHashMap<K, V> implements Iterable {
     private Node<K, V>[] container;
     private static final double LOAD_F = 0.75;
     private int initialCapacity = 16;
+    private int countElement = 0;
 
     public SimpleHashMap() {
         container = new Node[initialCapacity];
@@ -17,40 +18,44 @@ public class SimpleHashMap<K, V> implements Iterable {
         Node<K, V> node = new Node<>(key, value);
         if (checkLoadFactor()) {
             int input = node.key.hashCode() % container.length;
-            container[input] = node;
-        } else {
-            Node<K, V>[] oldContainer = container;
-            this.initialCapacity = initialCapacity * 2;
-            container = new Node[this.initialCapacity];
-            for (int i = 0; i < oldContainer.length; i++) {
-                if (oldContainer[i] != null) {
-                    int inputNew =  oldContainer[i].key.hashCode() % container.length;
-                    container[inputNew] = oldContainer[i];
-                }
+            if (container[input] != null) {
+                return false;
+            } else {
+                container[input] = node;
             }
+        } else {
+            resize();
         }
+        countElement++;
       return true;
     }
 
-    public V get(K key) {
+    public void resize() {
+        Node<K, V>[] oldContainer = container;
+        this.initialCapacity = initialCapacity * 2;
+        container = new Node[this.initialCapacity];
+        for (int i = 0; i < oldContainer.length; i++) {
+            if (oldContainer[i] != null) {
+                int inputNew =  oldContainer[i].key.hashCode() % container.length;
+                container[inputNew] = oldContainer[i];
+            }
+        }
+    }
+
+    public Node<K, V> get(K key) {
         int input = key.hashCode() % container.length;
-        return (V) container[input];
+        return container[input];
     }
 
     public boolean delete(K key) {
         int input = key.hashCode() % container.length;
         container[input] = null;
+        countElement--;
         return true;
     }
 
     public boolean checkLoadFactor() {
-        int count = 0;
-        for (Object rsl : container) {
-            if (rsl != null) {
-                count++;
-            }
-        }
-        return !((double) count / container.length >= LOAD_F);
+        return !((double) countElement / container.length >= LOAD_F);
     }
 
     @Override
@@ -59,7 +64,7 @@ public class SimpleHashMap<K, V> implements Iterable {
             private int count = 0;
             @Override
             public boolean hasNext() {
-                return count < initialCapacity;
+                return count < countElement;
             }
 
             @Override
@@ -67,7 +72,7 @@ public class SimpleHashMap<K, V> implements Iterable {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return (V) container[count++];
+                return container[count++];
             }
         };
     }
