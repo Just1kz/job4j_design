@@ -17,11 +17,8 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
                     .filter(x -> x.length() != 0 && !x.startsWith("#"))
-                    .forEach(xrt::add);
-            for (String rsl : xrt) {
-                String[] x = rsl.split("=");
-                values.put(x[0], x[1]);
-            }
+                    .map(line -> line.split("="))
+                    .forEach(x -> values.put(x[0], x[1]));
         } catch (Exception e) {
             e.printStackTrace();
         }
