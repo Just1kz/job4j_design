@@ -4,18 +4,19 @@ import java.io.FileOutputStream;
 
 public class ResultFile {
     public static void main(String[] args) {
-        int[] rsl = new int[100];
-        int count = 0;
-        for (int i = 1; i <= 10; i++) {
-            for (int z = 1; z <= 10; z++) {
-                rsl[count++] = z * i;
+        int[][] rsl = new int[10][10];
+        for (int i = 1; i < rsl.length; i++) {
+            for (int z = 1; z < rsl[i].length; z++) {
+                rsl[i][z] = z * i;
             }
         }
         try (FileOutputStream out = new FileOutputStream("result.txt")) {
             out.write("Hello, job4j! ".getBytes());
-            for (int j : rsl) {
-                String x = Integer.toString(j) + " ";
-                out.write(x.getBytes());
+            for (int i = 1; i < rsl.length; i++) {
+                for (int z = 1; z < rsl[i].length; z++) {
+                    String x = Integer.toString(rsl[i][z]) + " ";
+                    out.write(x.getBytes());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
