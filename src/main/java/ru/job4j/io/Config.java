@@ -16,7 +16,7 @@ public class Config {
         List<String> xrt = new ArrayList<>();
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
-                    .filter(x -> x.length() != 0 && !x.startsWith("//"))
+                    .filter(x -> x.length() != 0 && !x.startsWith("#"))
                     .forEach(xrt::add);
             for (String rsl : xrt) {
                 String[] x = rsl.split("=");
