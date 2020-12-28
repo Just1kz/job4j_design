@@ -14,12 +14,12 @@ public class SimpleSet<T> implements Iterable<T> {
     public boolean contains(T value) {
         if (rsl.getLengthArray() != 0) {
             for (T xxx : rsl) {
-                if (!xxx.equals(value)) {
-                    return false;
+                if (xxx.equals(value)) {
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     @Override
