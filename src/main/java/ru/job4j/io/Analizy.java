@@ -13,20 +13,20 @@ public class Analizy {
         int count = 0;
         try (BufferedReader read = new BufferedReader(new FileReader(source));
              PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
-            read.lines()
-                    .filter(x -> x.length() != 0 && !x.startsWith("//"))
-                    .forEach(zxc::add);
-            for (String rsl : zxc) {
-                String[] x = rsl.split(" ");
-                if (count == 0 && (x[0].equals("400") || x[0].equals("500"))) {
-                    out.write(x[1]);
-                    out.write("; ");
-                    count++;
-                }
-                if (count > 0 && (x[0].equals("200") || x[0].equals("300"))) {
-                    out.write(x[1]);
-                    out.write(10);
-                    count--;
+            String y;
+            while ((y = read.readLine()) != null) {
+                if (y.length() != 0 && !y.startsWith("#")) {
+                    String[] x = y.split(" ");
+                    if (count == 0 && (x[0].equals("400") || x[0].equals("500"))) {
+                        out.write(x[1]);
+                        out.write("; ");
+                        count++;
+                    }
+                    if (count > 0 && (x[0].equals("200") || x[0].equals("300"))) {
+                        out.write(x[1]);
+                        out.write(10);
+                        count--;
+                    }
                 }
             }
         } catch (Exception e) {
