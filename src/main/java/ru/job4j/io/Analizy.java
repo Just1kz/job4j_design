@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Analizy {
     public void unavailable(String source, String target) {
-        List<String> zxc = new ArrayList<>();
         int count = 0;
         try (BufferedReader read = new BufferedReader(new FileReader(source));
              PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
