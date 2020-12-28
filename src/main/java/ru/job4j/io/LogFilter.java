@@ -24,8 +24,7 @@ public class LogFilter {
                 ))) {
             char x = 10;
             for (String rsl : log) {
-                out.write(rsl);
-                out.write(x);
+                out.println(rsl);
             }
         } catch (Exception e) {
             e.printStackTrace();
