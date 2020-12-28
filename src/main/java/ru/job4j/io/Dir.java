@@ -14,7 +14,7 @@ public class Dir {
         for (File subfile : file.listFiles()) {
             if (subfile.getName().contains("design")) {
                 System.out.println("Имя файла: " + subfile.getName()
-                        + ", размер файла: " + subfile.getTotalSpace());
+                        + ", размер файла: " + subfile.length());
             }
         }
     }
