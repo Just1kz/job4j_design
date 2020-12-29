@@ -13,7 +13,6 @@ public class Config {
     }
 
     public void load() {
-        List<String> xrt = new ArrayList<>();
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
                     .filter(x -> x.length() != 0 && !x.startsWith("#"))

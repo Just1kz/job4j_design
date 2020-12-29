@@ -1,6 +1,7 @@
 package ru.job4j.it;
 
 import org.hamcrest.core.Is;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import static org.junit.Assert.assertThat;
 
 public class ListUtilsTest {
 
+    @Ignore
     @Test
     public void whenAddBefore() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 3));
