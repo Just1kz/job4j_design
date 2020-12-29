@@ -24,7 +24,7 @@ public class SearchFilesDuplicate implements FileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         CustomFile x = new CustomFile(file.toFile().getName(), file.toFile().length(), file.toFile().getAbsolutePath());
-        if(!allFiles.contains(x)) {
+        if (!allFiles.contains(x)) {
             allFiles.add(x);
         } else {
             duplicate.add(x);
