@@ -17,7 +17,7 @@ public class EvenNumberFile {
                     text
                             .append(s)
                             .append(" - является ли четным числом? - ")
-                            .append(rsl).append((char)10);
+                            .append(rsl).append((char) 10);
                 }
             }
                 System.out.println(text);
