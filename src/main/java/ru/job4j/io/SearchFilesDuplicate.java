@@ -9,26 +9,11 @@ import java.util.*;
 
 public class SearchFilesDuplicate implements FileVisitor<Path> {
 
-    private final List<CustomFile> allFiles = new ArrayList<>();
-    private final Set<CustomFile> duplicate = new HashSet<>();
+    private final Set<CustomFile> allFiles = new HashSet<>();
+    private final List<CustomFile> duplicate = new ArrayList<>();
 
-    public List<CustomFile> getAttributes() {
-        return allFiles;
-    }
-
-    public Set<CustomFile> getDuplicate() {
+    public List<CustomFile> getDuplicate() {
         return duplicate;
-    }
-
-    public void findDuplicate() {
-        for (CustomFile rsl : allFiles) {
-            for (CustomFile search : allFiles) {
-                if (rsl.equals(search) && (!rsl.path.iterator().next().equals(search.path.iterator().next()))) {
-                    rsl.path.add(search.path.iterator().next());
-                    duplicate.add(rsl);
-                }
-            }
-        }
     }
 
     @Override
@@ -38,7 +23,12 @@ public class SearchFilesDuplicate implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        allFiles.add(new CustomFile(file.toFile().getName(), file.toFile().length(), file.toFile().getAbsolutePath()));
+        CustomFile x = new CustomFile(file.toFile().getName(), file.toFile().length(), file.toFile().getAbsolutePath());
+        if(!allFiles.contains(x)) {
+            allFiles.add(x);
+        } else {
+            duplicate.add(x);
+        }
         return FileVisitResult.CONTINUE;
     }
 
@@ -53,8 +43,8 @@ public class SearchFilesDuplicate implements FileVisitor<Path> {
     }
 
     public static class CustomFile {
-      private String name;
-      private long size;
+      private final String name;
+      private final long size;
       private final Set<String> path = new HashSet<>();
 
         public CustomFile(String name, long size, String path) {

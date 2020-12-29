@@ -21,10 +21,10 @@ public class Search {
         return searcher.getPaths();
     }
 
-    public static Set<SearchFilesDuplicate.CustomFile> searchDuplicate(Path root) throws IOException {
+    public static List<SearchFilesDuplicate.CustomFile> searchDuplicate(Path root) throws IOException {
         SearchFilesDuplicate searcher = new SearchFilesDuplicate();
         Files.walkFileTree(root, searcher);
-        searcher.findDuplicate();
+        //searcher.findDuplicate();
         return searcher.getDuplicate();
     }
 }
