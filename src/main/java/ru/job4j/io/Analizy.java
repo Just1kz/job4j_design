@@ -9,25 +9,36 @@ import java.util.List;
 
 public class Analizy {
     public void unavailable(String source, String target) {
+        StringBuilder rsl = new StringBuilder();
         int count = 0;
-        try (BufferedReader read = new BufferedReader(new FileReader(source));
-             PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
+        try (BufferedReader read = new BufferedReader(new FileReader(source))) {
             String y;
             while ((y = read.readLine()) != null) {
                 if (y.length() != 0 && !y.startsWith("#")) {
                     String[] x = y.split(" ");
                     if (count == 0 && (x[0].equals("400") || x[0].equals("500"))) {
-                        out.write(x[1]);
-                        out.write("; ");
+                        if (rsl.length() != 0) {
+                            rsl.append(", ");
+                        }
+                        rsl.append(x[1]);
+                        rsl.append("; ");
                         count++;
                     }
                     if (count > 0 && (x[0].equals("200") || x[0].equals("300"))) {
-                        out.write(x[1]);
-                        out.write(10);
+                        rsl.append(x[1]);
                         count--;
                     }
                 }
             }
+            write(target, rsl.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void write(String target, String s) {
+        try (PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
+            out.write(s);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -26,7 +26,7 @@ public class AnalizyTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertThat(input, is(output));
+        assertThat(input.toString(), is(output.toString()));
     }
 
     @Test
@@ -53,6 +53,6 @@ public class AnalizyTest {
                     .forEach(input::add);
         }
 
-        assertThat(input, is(output));
+        assertThat(input.toString(), is(output.toString()));
     }
 }
