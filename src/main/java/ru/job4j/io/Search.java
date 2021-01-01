@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,16 +14,16 @@ public class Search {
     public static void main(String[] args) throws IOException {
         Path start = Paths.get("C:\\Users\\Just1lz\\Documents\\Data\\Java");
         searchDuplicate(start).forEach(System.out::println);
-        Path start2 = Paths.get(".");
         String format = ".java";
         if (args.length == 0) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
         }
-        if (format.length() == 0) {
-            throw new IllegalArgumentException("Invalid arguments! Try again,  .txt or .java or any format");
+        if (!args[0].equals(".")) {
+            throw new IllegalArgumentException("Wrong set format, repeat again");
         }
-        if (start2.toFile().length() == 0) {
-            throw new IllegalArgumentException("Invalid arguments! Try again,  C:\\ or . or any format");
+        Path start2 = new File(args[0]).toPath();
+        if (start2 == null) {
+            throw new IllegalArgumentException(String.format("Not exist %s", start2));
         }
         search(start2, format).forEach(System.out::println);
     }
