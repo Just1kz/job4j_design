@@ -11,6 +11,9 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
+        }
         for (String x : args) {
             String z = x.substring(1);
             String[] rsl = z.split("=");
