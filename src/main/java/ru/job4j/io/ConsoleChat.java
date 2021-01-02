@@ -56,19 +56,18 @@ public class ConsoleChat {
             System.out.print("you: ");
             String userAnswer = scanner.nextLine();
             switch (userAnswer.toLowerCase(Locale.ROOT)) {
-                case (OUT) -> {
+                case (OUT):
                     chat = false;
                     bot = false;
-                }
-                case (STOP) -> {
+                    break;
+                case (STOP):
                     bot = false;
-                }
-                case (CONTINUE) -> {
+                    break;
+                case (CONTINUE):
                     bot = true;
-                }
-                default -> {
+                    break;
+                default:
                     logAllChat.add(userAnswer);
-                }
             }
             if (bot) {
                 String x = randomBotAnswer();
