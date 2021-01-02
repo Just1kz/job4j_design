@@ -5,32 +5,23 @@ import java.util.*;
 public class Analize {
 
     public Info diffArray(List<User> previous, List<User> current) {
-        Info info = new Info();
-        List<User> prev = new ArrayList<>(previous);
-        List<User> curr = new ArrayList<>(current);
-        int minLength = Math.min(prev.size(), curr.size());
-        for (int i = 0; i < minLength; i++) {
-                if (curr.get(i).getId() == prev.get(i).getId()) {
-                    if (!curr.get(i).getName().equals(prev.get(i).getName())) {
-                        info.changed++;
-                    }
-                } else {
-                    if (!curr.equals(prev)) {
-                        info.added++;
-                    }
-                }
+        Map<Integer, User> currMap = new HashMap<>();
+        int deleted = 0;
+        int changed = 0;
+        for(User rsl : current) {
+            currMap.put(rsl.id, rsl);
         }
-            for (int i = 0; i < minLength; i++) {
-                    if (!prev.get(i).equals(curr.get(i))) {
-                        info.deleted++;
-                    }
-            }
-        return info;
+        for (User u : previous) {
+            deleted += (!currMap.containsKey(u.id) ? 1 : 0);
+            changed += (currMap.containsKey(u.id) && !u.name.equals(currMap.get(u.id).name) ? 1 : 0);
+        }
+        int added = current.size() + deleted - previous.size();
+        return new Info(added, changed,  deleted);
     }
 
     public static class User {
-        private int id;
-        private String name;
+        private final int id;
+        private final String name;
 
         public User(int id, String name) {
             this.id = id;
