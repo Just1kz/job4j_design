@@ -15,7 +15,7 @@ public class ConsoleChat {
     private static final String CONTINUE = "продолжить";
     private final List<String> logAllChat = new LinkedList<>();
     private final List<String> allBotAnswers = new LinkedList<>();
-    private List<String> dataAllBotAnswers = new ArrayList<>(20);
+    private final List<String> dataAllBotAnswers = new ArrayList<>(20);
 
     public ConsoleChat(String path, String botAnswers) {
         this.path = path;
