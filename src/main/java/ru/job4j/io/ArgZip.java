@@ -38,17 +38,14 @@ public class ArgZip {
     }
 
     public String directory() {
-        valid();
         return args[1];
     }
 
     public String exclude() {
-        valid();
         return args[3];
     }
 
     public String output() {
-        valid();
         return args[5];
     }
 
