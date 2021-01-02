@@ -15,6 +15,22 @@ public class Student {
         this.directions = directions;
     }
 
+    public boolean isLearn() {
+        return learn;
+    }
+
+    public int getLastCourse() {
+        return lastCourse;
+    }
+
+    public TrainingPlatform getTrainingPlatform() {
+        return trainingPlatform;
+    }
+
+    public String[] getDirections() {
+        return directions;
+    }
+
     @Override
     public String toString() {
         return "Student{"
