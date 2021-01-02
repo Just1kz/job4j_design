@@ -1,6 +1,7 @@
 package ru.job4j.collection;
 
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -9,9 +10,11 @@ public class SimpleHashMap<K, V> implements Iterable {
     private static final double LOAD_F = 0.75;
     private int initialCapacity = 16;
     private int countElement = 0;
+    private int modCount = 0;
 
     public SimpleHashMap() {
         container = new Node[initialCapacity];
+        modCount++;
     }
 
     public boolean insert(K key, V value) {
@@ -27,10 +30,11 @@ public class SimpleHashMap<K, V> implements Iterable {
             resize();
         }
         countElement++;
+        modCount++;
       return true;
     }
 
-    public void resize() {
+    private void resize() {
         Node<K, V>[] oldContainer = container;
         this.initialCapacity = initialCapacity * 2;
         container = new Node[this.initialCapacity];
@@ -44,13 +48,21 @@ public class SimpleHashMap<K, V> implements Iterable {
 
     public Node<K, V> get(K key) {
         int input = key.hashCode() % container.length;
+        if (!container[input].equals(key)) {
+            return null;
+        }
+        modCount++;
         return container[input];
     }
 
     public boolean delete(K key) {
         int input = key.hashCode() % container.length;
+        if (!container[input].equals(key)) {
+            return false;
+        }
         container[input] = null;
         countElement--;
+        modCount++;
         return true;
     }
 
@@ -61,10 +73,22 @@ public class SimpleHashMap<K, V> implements Iterable {
     @Override
     public Iterator iterator() {
         return new Iterator() {
+            private final int expectedModCount = modCount;
             private int count = 0;
             @Override
             public boolean hasNext() {
-                return count < countElement;
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                boolean rsl = false;
+                for (int i = count; i < container.length; i++) {
+                    if (container[i] != null) {
+                        count = i;
+                        rsl = true;
+                        break;
+                    }
+                }
+                return rsl;
             }
 
             @Override
