@@ -8,7 +8,7 @@ public class Analize {
         Map<Integer, User> currMap = new HashMap<>();
         int deleted = 0;
         int changed = 0;
-        for(User rsl : current) {
+        for (User rsl : current) {
             currMap.put(rsl.id, rsl);
         }
         for (User u : previous) {
