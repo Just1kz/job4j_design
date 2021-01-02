@@ -33,15 +33,15 @@ public class EchoServer {
                     String rslX = rsl.substring(rsl.lastIndexOf("=") + 1,
                             rsl.lastIndexOf(" "));
                     if (rslX.equalsIgnoreCase("exit")) {
-                        out.write("HTTP/1.1 200 ServerClose\r\n\r\n".getBytes());
+                        out.write("HTTP/1.1 200 410 Gone\r\n\r\n".getBytes());
+                        out.write("Bye, dear friend.".getBytes());
                         server.close();
                         break;
                     } else {
+                        out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                         if (rslX.equalsIgnoreCase("hello")) {
-                            out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                             out.write("Hello, dear friend.".getBytes());
                         } else {
-                            out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                             out.write(rslX.getBytes());
                         }
                     }
