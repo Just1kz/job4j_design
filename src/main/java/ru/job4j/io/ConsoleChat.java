@@ -24,7 +24,7 @@ public class ConsoleChat {
 
     public void getAllBotAnswersOfFile() {
         try (BufferedReader read = new BufferedReader(new FileReader(
-                "C:\\Users\\Just1lz\\IdeaProjects\\job4j_design\\src\\data\\dataBotAnswers.txt"))) {
+                ".\\src\\data\\dataBotAnswers.txt"))) {
             String y;
             while ((y = read.readLine()) != null) {
                 dataAllBotAnswers.add(y);
@@ -82,8 +82,8 @@ public class ConsoleChat {
     }
 
     public static void main(String[] args) throws IOException {
-        ConsoleChat cc = new ConsoleChat("C:\\Users\\Just1lz\\IdeaProjects\\job4j_design\\src\\data\\allChatsLog.txt",
-                "C:\\Users\\Just1lz\\IdeaProjects\\job4j_design\\src\\data\\logBotAnswers.txt");
+        ConsoleChat cc = new ConsoleChat(".\\src\\data\\allChatsLog.txt",
+                ".\\src\\data\\logBotAnswers.txt");
         cc.run();
     }
 }
