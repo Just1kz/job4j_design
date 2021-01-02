@@ -20,10 +20,9 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str;
                     String rsl = null;
                     int count = 1;
-                    while (!(str = in.readLine()).isEmpty()) {
+                    for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
                         if (count == 1) {
                             rsl = str;
                             count++;
