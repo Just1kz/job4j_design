@@ -22,18 +22,24 @@ public class EchoServer {
                         if (count == 1) {
                             rsl = str;
                             count++;
-                            System.out.println(str);
-                        } else {
-                            System.out.println(str);
                         }
+                        System.out.println(str);
                     }
                     assert rsl != null;
-                    if (rsl.contains("Bye")) {
-                        out.write("HTTP/1.1 200 BAD\r\n\\".getBytes());
+                    String rslX = rsl.substring(rsl.lastIndexOf("=") + 1,
+                            rsl.lastIndexOf(" "));
+                    if (rslX.equalsIgnoreCase("exit")) {
+                        out.write("HTTP/1.1 200 ServerClose\r\n\r\n".getBytes());
                         server.close();
                         break;
                     } else {
-                        out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
+                        if (rslX.equalsIgnoreCase("hello")) {
+                            out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                            out.write("Hello, dear friend.".getBytes());
+                        } else {
+                            out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                            out.write(rslX.getBytes());
+                        }
                     }
                 }
             }
