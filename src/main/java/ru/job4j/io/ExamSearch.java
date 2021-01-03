@@ -20,24 +20,8 @@ public class ExamSearch {
     }
 
     private List<Path> search(ExamSearchAndZip examSearchAndZip) throws IOException {
-        String rsl = examSearchAndZip.searchType();
-        SearchFiles searcher = null;
-        switch (rsl.toLowerCase()) {
-            case("-m"):
-                searcher = new SearchFiles(p -> p.toFile().getName().endsWith(examSearchAndZip.patternSearch()));
-                break;
-            case("-f"):
-                searcher = new SearchFiles(p -> p.toFile().getName().equals(examSearchAndZip.patternSearch()));
-                break;
-            case("-r"):
-                searcher = new SearchFiles(p -> p.toFile().getName().matches(examSearchAndZip.patternSearch()));
-                break;
-            default:
-                break;
-        }
-        assert searcher != null;
-        Files.walkFileTree(Path.of(examSearchAndZip.directory()), searcher);
-        return searcher.getPaths();
+        Files.walkFileTree(Path.of(examSearchAndZip.directory()), examSearchAndZip.predicateSearch());
+        return examSearchAndZip.predicateSearch().getPaths();
     }
 
     private void writeLog(ExamSearchAndZip examSearchAndZip, List<Path> files) throws IOException {

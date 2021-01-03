@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.File;
+import java.util.function.Predicate;
 
 public class ExamSearchAndZip {
     private final String[] args;
@@ -50,6 +51,24 @@ public class ExamSearchAndZip {
 
     public String searchType() {
         return args[4];
+    }
+
+    public SearchFiles predicateSearch() {
+        SearchFiles rsl = null;
+        switch (args[4]) {
+            case("-m"):
+                rsl = new SearchFiles(p -> p.toFile().getName().endsWith(patternSearch()));
+                break;
+            case("-f"):
+                rsl = new SearchFiles(p -> p.toFile().getName().equals(patternSearch()));
+                break;
+            case("-r"):
+                rsl = new SearchFiles(p -> p.toFile().getName().matches(patternSearch()));
+                break;
+            default:
+                break;
+        }
+        return rsl;
     }
 
     public String logPath() {
