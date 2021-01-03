@@ -21,7 +21,8 @@ public class SimpleHashMap<K, V> implements Iterable {
         Node<K, V> node = new Node<>(key, value);
         if (checkLoadFactor()) {
             int input = node.key.hashCode() % container.length;
-            if (container[input] != null) {
+            if (container[input] != null
+                    || ((key == container[input].key) || container[input].key.hashCode() == key.hashCode() && key.equals(container[input].key))) {
                 return false;
             } else {
                 container[input] = node;
