@@ -24,6 +24,12 @@ public class CustomSettingsConnect {
                 this.password = x.getValue();
             }
         }
+        if (url == null
+                || login == null
+                || password == null) {
+            throw new IllegalArgumentException("You set not all parameters in file app.properties."
+            + " Check your file.");
+        }
     }
 
     public void getSettingsFileProperties() {
