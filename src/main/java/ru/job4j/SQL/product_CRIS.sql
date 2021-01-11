@@ -52,7 +52,7 @@ where t.name LIKE ('%Мороженное%');
 select
     *
 from product t
-where t.expired_date > (current_date + interval '1 month' - interval '9 day');
+where t.expired_date between current_date + integer '30' and current_date + integer '60';
 
 --4. Написать запрос, который выводит самый дорогой продукт.
 
@@ -77,7 +77,7 @@ select
     *
 from product t
          join type t2 on t.type_id = t2.id
-where t2.id = 1 or t2.id = 2;
+where t2.name = 'СЫР' or t2.name = 'МОЛОКО';
 
 --7. Написать запрос, который выводит тип продуктов, которых осталось меньше 10 штук.
 select
