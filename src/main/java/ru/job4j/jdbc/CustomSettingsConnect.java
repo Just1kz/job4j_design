@@ -14,13 +14,13 @@ public class CustomSettingsConnect {
     public CustomSettingsConnect() {
         getSettingsFileProperties();
         for (Map.Entry<String, String> x : values.entrySet()) {
-            if (x.getKey().equals("url")) {
+            if (x.getKey().equalsIgnoreCase("url")) {
                 this.url = x.getValue();
             }
-            if (x.getKey().equals("login")) {
+            if (x.getKey().equalsIgnoreCase("login")) {
                 this.login = x.getValue();
             }
-            if (x.getKey().equals("password")) {
+            if (x.getKey().equalsIgnoreCase("password")) {
                 this.password = x.getValue();
             }
         }
