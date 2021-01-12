@@ -3,6 +3,7 @@ package ru.job4j.jdbc;
 import java.sql.*;
 
 public class StatementDemo {
+
     private static Connection getConnection() throws Exception {
         Class.forName("org.postgresql.Driver");
         CustomSettingsConnect csc = new CustomSettingsConnect();
