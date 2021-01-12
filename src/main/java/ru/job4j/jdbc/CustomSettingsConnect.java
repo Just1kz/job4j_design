@@ -6,24 +6,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomSettingsConnect {
-    private String url;
-    private String login;
-    private String password;
+    private final String url;
+    private final String login;
+    private final String password;
     private final Map<String, String> values = new HashMap<String, String>();
 
     public CustomSettingsConnect() {
         getSettingsFileProperties();
-        for (Map.Entry<String, String> x : values.entrySet()) {
-            if (x.getKey().equalsIgnoreCase("url")) {
-                this.url = x.getValue();
-            }
-            if (x.getKey().equalsIgnoreCase("login")) {
-                this.login = x.getValue();
-            }
-            if (x.getKey().equalsIgnoreCase("password")) {
-                this.password = x.getValue();
-            }
-        }
+                this.url = values.get("url");
+                this.login = values.get("login");
+                this.password = values.get("password");
         if (url == null
                 || login == null
                 || password == null) {
