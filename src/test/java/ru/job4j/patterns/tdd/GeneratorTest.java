@@ -15,7 +15,7 @@ public class GeneratorTest {
         Generator generator = new CustomGenerator();
         String template = "I am a ${name}, Who are ${subject}?";
         Map map = Map.of(
-                "name", "Ivan",
+                "name", "Anton",
                 "subject", "you"
         );
         String out = generator.produce(template, map);
@@ -31,7 +31,7 @@ public class GeneratorTest {
         Generator generator = new CustomGenerator();
         String template = "I am a ${name}, Who are ${subject}?";
         Map map = Map.of(
-                "name", "Ivan"
+                "name", "Anton"
         );
         String out = generator.produce(template, map);
     }
@@ -42,7 +42,7 @@ public class GeneratorTest {
         Generator generator = new CustomGenerator();
         String template = "I am a ${name}, Who are ${subject}?";
         Map map = Map.of(
-                "name", "Ivan",
+                "name", "Anton",
                 "subject", "you",
                 "something", "something"
         );
