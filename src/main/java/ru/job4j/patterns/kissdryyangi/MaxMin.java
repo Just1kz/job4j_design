@@ -1,4 +1,4 @@
-package ru.job4j.patterns;
+package ru.job4j.patterns.kissdryyangi;
 
 import java.util.Comparator;
 import java.util.Iterator;
