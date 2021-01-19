@@ -1,7 +1,6 @@
-package ru.job4j.ood.solid.lsp;
+package ru.job4j.ood.solid.lsp.food;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Food {

@@ -1,11 +1,11 @@
 package ru.job4j.ood.solid.lsp;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import ru.job4j.ood.solid.lsp.food.Food;
+import ru.job4j.ood.solid.lsp.food.SimpleControlQuality;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
