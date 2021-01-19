@@ -23,6 +23,17 @@ public class CinemaTest {
     }
 
     @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void buyWrongPlace() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        date.set(2020, 10, 10, 23, 00);
+        Ticket ticket = cinema.buy(account, 1, 1, date);
+        assertThat(ticket, is(new Ticket3D()));
+    }
+
+    @Ignore
     @Test
     public void find() {
         Cinema cinema = new Cinema3D();
