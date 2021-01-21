@@ -1,7 +1,7 @@
 package ru.job4j.ood.solid.lsp.parking;
 
 public interface Parking {
-    boolean createParking();
+    Car getCar(Car car);
 
     void addCar(Car car);
 }
