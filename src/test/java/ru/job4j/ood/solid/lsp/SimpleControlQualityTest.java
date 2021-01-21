@@ -2,8 +2,7 @@ package ru.job4j.ood.solid.lsp;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ru.job4j.ood.solid.lsp.food.Food;
-import ru.job4j.ood.solid.lsp.food.SimpleControlQuality;
+import ru.job4j.ood.solid.lsp.food.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +11,9 @@ import static org.hamcrest.Matchers.is;
 
 public class SimpleControlQualityTest {
     SimpleControlQuality input = new SimpleControlQuality();
+    Trash trash = new Trash();
+    Warehouse warehouse = new Warehouse();
+    Shop shop = new Shop();
     Food milk = new Food("milk",
             LocalDate.of(2021, 2, 3),
             LocalDate.of(2021, 1, 10),
@@ -45,33 +47,45 @@ public class SimpleControlQualityTest {
 
     @Test
     public void controlQualityShop() {
-        input.controlQuality(milk);
-        input.controlQuality(bread);
-        input.controlQuality(eggs);
+        input.add(warehouse);
+        input.add(trash);
+        input.add(shop);
+        input.distribute(milk);
+        input.distribute(bread);
+        input.distribute(eggs);
         List<Food> output = List.of(milk, bread, eggs);
-        Assert.assertThat(input.getShop().getAll().toString(), is(output.toString()));
+        Assert.assertThat(input.clear().toString(), is(output.toString()));
     }
 
     @Test
     public void controlQualityTrash() {
-        input.controlQuality(meat);
-        input.controlQuality(fish);
+        input.add(warehouse);
+        input.add(trash);
+        input.add(shop);
+        input.distribute(meat);
+        input.distribute(fish);
         List<Food> output = List.of(meat, fish);
-        Assert.assertThat(input.getTrash().getAll().toString(), is(output.toString()));
+        Assert.assertThat(input.clear().toString(), is(output.toString()));
     }
 
     @Test
     public void controlQualityWarehouse() {
-        input.controlQuality(chicken);
+        input.add(warehouse);
+        input.add(trash);
+        input.add(shop);
+        input.distribute(chicken);
         List<Food> output = List.of(chicken);
-        Assert.assertThat(input.getWarehouse().getAll().toString(), is(output.toString()));
+        Assert.assertThat(input.clear().toString(), is(output.toString()));
     }
 
     @Test
     public void controlQualityDiscounted() {
-        input.controlQuality(eggs);
+        input.add(warehouse);
+        input.add(trash);
+        input.add(shop);
+        input.distribute(eggs);
         List<Food> output = List.of(eggs);
-        Assert.assertThat(input.getShop().getAll().toString(), is(output.toString()));
+        Assert.assertThat(input.clear().toString(), is(output.toString()));
         Assert.assertThat(eggs.getDiscount(), is(0.20));
     }
 }

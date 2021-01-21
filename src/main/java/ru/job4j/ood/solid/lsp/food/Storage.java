@@ -4,7 +4,15 @@ import java.util.List;
 
 public interface Storage {
 
-    public void add(Food food);
+    void add(Food food);
 
-    public List<Food> getAll();
+    boolean accept(Food food);
+
+    double analyzeControlQuality(Food food);
+
+    List<Food> clear();
+
+    List<Food> getAll();
+
+    int getLength();
 }

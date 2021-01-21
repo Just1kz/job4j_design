@@ -2,57 +2,48 @@ package ru.job4j.ood.solid.lsp.food;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SimpleControlQuality implements ControlQuality {
-    private final Warehouse warehouse = new Warehouse();
-    private final Shop shop = new Shop();
-    private final Trash trash = new Trash();
+    private final List<Storage> storages = new ArrayList<>();
 
     @Override
-    public boolean controlQuality(Food food) {
-        Period base = Period.between(food.getCreateDate(), food.getExpirationDate());
-        LocalDate localDate = LocalDate.now();
-        Period daysPassed = Period.between(food.getCreateDate(), localDate);
-        double rsl = (double) daysPassed.getDays() / base.getDays();
-        if (rsl < 0.25) {
-            warehouse.add(food);
-            return true;
+    public void distribute(Food food) {
+        for (Storage storage : storages) {
+            if (storage.accept(food)) {
+                storage.add(food);
+                break;
+            }
         }
-        if (rsl >= 0.25 && rsl <= 0.75) {
-            shop.add(food);
-            return true;
+    }
+
+    @Override
+    public List<Food> clear() {
+        List<Food> rsl = new ArrayList<>();
+        for (Storage storage : storages) {
+            if (storage.getLength() != 0) {
+                rsl.addAll(storage.getAll());
+            }
         }
-        if (rsl > 0.75 && rsl < 1) {
-            food.setDiscount(0.20);
-            shop.add(food);
-        } else {
-            trash.add(food);
-        }
-        return true;
+        return rsl;
+    }
+
+    @Override
+    public void add(Storage storage) {
+        storages.add(storage);
+    }
+
+    public List<Storage> getStorages() {
+        return storages;
     }
 
     @Override
     public String toString() {
         return "SimpleControlQuality{"
-                + "warehouse="
-                + warehouse
-                + ", shop="
-                + shop
-                + ", trash="
-                + trash
+                + "storages="
+                + storages
                 + '}';
-    }
-
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public Shop getShop() {
-        return shop;
-    }
-
-    public Trash getTrash() {
-        return trash;
     }
 
     public static void main(String[] args) {
@@ -67,6 +58,13 @@ public class SimpleControlQuality implements ControlQuality {
         double rsl = (double) daysPassed.getDays() / base.getDays();
         System.out.println(base.getDays());
         System.out.println(rsl);
+
+        SimpleControlQuality z = new SimpleControlQuality();
+        z.distribute(food);
+
+//        System.out.println(z.storages.get(1).analyzeControlQuality(food));
+//        System.out.println(z.storages.get(1).accept(food));
+        System.out.println(z);
     }
 
 }
