@@ -53,13 +53,8 @@ public class Task implements Comparator<Task> {
 
     @Override
     public String toString() {
-        return "Task{"
-                + "type='"
-                + name
-                + '\''
-                + ", number='"
-                + number
-                + '\''
-                + '}';
+        return name
+                + " "
+                + number;
     }
 }

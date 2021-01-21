@@ -21,7 +21,9 @@ public class Menu implements ManagerMenu {
     public void getAllMenu() {
         if (output.size() > 0) {
             List<Task> rsl = new ArrayList<>(sortMenu());
-            System.out.println(rsl);
+            for (Task x :rsl) {
+                System.out.println(x.toString());
+            }
         }
     }
 
