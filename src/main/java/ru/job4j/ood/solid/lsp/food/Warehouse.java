@@ -25,14 +25,6 @@ public class Warehouse implements Storage {
     }
 
     @Override
-    public double analyzeControlQuality(Food food) {
-        Period base = Period.between(food.getCreateDate(), food.getExpirationDate());
-        LocalDate localDate = LocalDate.now();
-        Period daysPassed = Period.between(food.getCreateDate(), localDate);
-        return (double) daysPassed.getDays() / base.getDays();
-    }
-
-    @Override
     public List<Food> clear() {
         List<Food> rsl = new ArrayList<>(warehouse);
         warehouse.clear();
