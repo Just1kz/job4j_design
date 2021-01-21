@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class ReportEngineHtmlTest {
 
     @Test
-    public void generateEngineNew() {
+    public void generateEngineHtml() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Anton", now, now, 1000);
