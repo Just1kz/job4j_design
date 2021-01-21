@@ -26,12 +26,21 @@ public class SimpleControlQuality implements ControlQuality {
                 rsl.addAll(storage.getAll());
             }
         }
+        storages.clear();
         return rsl;
     }
 
     @Override
     public void add(Storage storage) {
         storages.add(storage);
+    }
+
+    @Override
+    public void resort() {
+        List<Food> foods = clear();
+        for (Food out : foods) {
+            distribute(out);
+        }
     }
 
     public List<Storage> getStorages() {

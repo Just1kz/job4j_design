@@ -8,4 +8,6 @@ public interface ControlQuality {
     List<Food> clear();
 
     void add(Storage storage);
+
+    void resort();
 }
