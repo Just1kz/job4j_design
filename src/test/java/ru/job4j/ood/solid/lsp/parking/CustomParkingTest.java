@@ -11,7 +11,7 @@ public class CustomParkingTest {
     @Test
     public void whenCanJoinParkPlace() {
         Parking parking = new CustomParking(2, 0);
-        Car car = new CustomCar( "Audi TT", 1, "ип406з");
+        Car car = new CustomCar("Audi TT", 1, "ип406з");
         Assert.assertTrue(parking.addCar(car));
         Assert.assertEquals(car, parking.getCar(car));
     }
@@ -20,7 +20,7 @@ public class CustomParkingTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenSmallParking() {
         Parking parking = new CustomParking(1, 0);
-        Car car = new CustomCar("Audi TT", 1,"ип406з");
+        Car car = new CustomCar("Audi TT", 1, "ип406з");
         Car car2 = new CustomCar("КАМАЗ", 2, "зв345у");
         parking.addCar(car);
         parking.addCar(car2);
@@ -30,7 +30,7 @@ public class CustomParkingTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenParkingFull() {
         Parking parking = new CustomParking(10, 10);
-        Car car = new CustomCar("Audi TT", 1,"ип406з");
+        Car car = new CustomCar("Audi TT", 1, "ип406з");
         parking.addCar(car);
     }
 
@@ -38,7 +38,7 @@ public class CustomParkingTest {
     @Test
     public void whenSearchCarInParking() {
         Parking parking = new CustomParking(10, 0);
-        Car car = new CustomCar("Audi TT", 1,"ип406з");
+        Car car = new CustomCar("Audi TT", 1, "ип406з");
         parking.addCar(car);
         Assert.assertThat(parking.getCar(car), Is.is(car));
     }
