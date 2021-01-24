@@ -4,6 +4,8 @@ import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.is;
 
 public class CustomParkingTest {
 
@@ -22,8 +24,8 @@ public class CustomParkingTest {
         Parking parking = new CustomParking(1, 0);
         Car car = new CustomCar("Audi TT", 1, "ип406з");
         Car car2 = new CustomCar("КАМАЗ", 2, "зв345у");
-        parking.addCar(car);
-        parking.addCar(car2);
+        assertThat(parking.addCar(car), is(true));
+        assertThat(parking.addCar(car2), is(false));
     }
 
     @Ignore
@@ -31,7 +33,7 @@ public class CustomParkingTest {
     public void whenParkingFull() {
         Parking parking = new CustomParking(10, 10);
         Car car = new CustomCar("Audi TT", 1, "ип406з");
-        parking.addCar(car);
+        assertThat(parking.addCar(car), is(false));
     }
 
     @Ignore
