@@ -195,6 +195,13 @@ public class Board implements GameManager {
         if (winMark.equals(player2.getMark().toLowerCase())) {
             output.println("Победитель -> " + player2.getName());
         }
+        output.println("Хотите сыграть снова?");
+        String again = input.ask().toLowerCase();
+        if (again.equals("да")) {
+            gamePlay();
+        } else {
+            output.println("Спасибо за игру! Будем ждать вас снова!");
+        }
     }
 
     //проверка совпадения и свободных ячеек
