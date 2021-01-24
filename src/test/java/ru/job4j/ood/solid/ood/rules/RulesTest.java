@@ -20,25 +20,25 @@ public class RulesTest {
     OutputManager output = new ConsoleOutput();
     Rules rules = new Rules();
     GameManager board = new Board(player1, player2, input, output, rules);
-    String[][] horizontal1 = { {"х", "х", "   "},
+    String[][] horizontal1 = {{"х", "х", "   "},
                                                     {"   ", "   ", "   "},
                                                     {"   ", "   ", "   "}};
-    String[][] horizontal2 = { {"   ", "х", "х"},
+    String[][] horizontal2 = {{"   ", "х", "х"},
                                                     {"   ", "   ", "   "},
                                                     {"   ", "   ", "   "}};
-    String[][] vertical = { {"х", "   ", "   "},
+    String[][] vertical = {{"х", "   ", "   "},
                                             {"х", "   ", "   "},
                                             {"   ", "   ", "   "}};
-    String[][] vertical2 = { {"   ", "   ", "   "},
+    String[][] vertical2 = {{"   ", "   ", "   "},
                                                 {"х", "   ", "   "},
                                                 {"х", "   ", "   "}};
-    String[][] diagonal1 = { {"   ", "   ", "   "},
+    String[][] diagonal1 = {{"   ", "   ", "   "},
                                                 {"   ", "х", "   "},
                                                 {"   ", "   ", "х"}};
-    String[][] diagonal2 = { {"х", "   ", "   "},
+    String[][] diagonal2 = {{"х", "   ", "   "},
                                                 {"   ", "х", "   "},
                                                 {"   ", "   ", "   "}};
-    String[][] firstStep = { {"   ", " о ", "   "},
+    String[][] firstStep = {{"   ", " о ", "   "},
                                               {"   ", "   ", "   "},
                                               {"   ", "   ", "   "}};
 
@@ -50,20 +50,20 @@ public class RulesTest {
 
     @Test
     public void checkHorizontalMark() {
-        assertThat(rules.checkHorizontalMark(horizontal1,"о"), is(3));
-        assertThat(rules.checkHorizontalMark(horizontal2,"о"), is(1));
+        assertThat(rules.checkHorizontalMark(horizontal1, "о"), is(3));
+        assertThat(rules.checkHorizontalMark(horizontal2, "о"), is(1));
     }
 
     @Test
     public void checkVerticalMark() {
-        assertThat(rules.checkVerticalMark(vertical,"о"), is(7));
-        assertThat(rules.checkVerticalMark(vertical2,"о"), is(1));
+        assertThat(rules.checkVerticalMark(vertical, "о"), is(7));
+        assertThat(rules.checkVerticalMark(vertical2, "о"), is(1));
     }
 
     @Test
     public void checkDiagonalMark() {
-        assertThat(rules.checkDiagonalMark(diagonal1,"о"), is(1));
-        assertThat(rules.checkDiagonalMark(diagonal2,"о"), is(9));
+        assertThat(rules.checkDiagonalMark(diagonal1, "о"), is(1));
+        assertThat(rules.checkDiagonalMark(diagonal2, "о"), is(9));
     }
 
     @Test
