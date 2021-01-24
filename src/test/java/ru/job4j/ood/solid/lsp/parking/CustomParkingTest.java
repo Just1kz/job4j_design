@@ -2,14 +2,12 @@ package ru.job4j.ood.solid.lsp.parking;
 
 import org.hamcrest.core.Is;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.is;
 
 public class CustomParkingTest {
 
-    @Ignore
     @Test
     public void whenCanJoinParkPlace() {
         Parking parking = new CustomParking(2, 0);
@@ -18,8 +16,7 @@ public class CustomParkingTest {
         Assert.assertEquals(car, parking.getCar(car));
     }
 
-    @Ignore
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenSmallParking() {
         Parking parking = new CustomParking(1, 0);
         Car car = new CustomCar("Audi TT", 1, "ип406з");
@@ -28,15 +25,13 @@ public class CustomParkingTest {
         assertThat(parking.addCar(car2), is(false));
     }
 
-    @Ignore
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenParkingFull() {
         Parking parking = new CustomParking(10, 10);
         Car car = new CustomCar("Audi TT", 1, "ип406з");
         assertThat(parking.addCar(car), is(false));
     }
 
-    @Ignore
     @Test
     public void whenSearchCarInParking() {
         Parking parking = new CustomParking(10, 0);

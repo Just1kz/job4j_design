@@ -1,9 +1,9 @@
 package ru.job4j.ood.solid.lsp.parking;
 
 public class CustomCar implements Car {
-    private String name;
-    private int size;
-    private String registrationCode;
+    private final String name;
+    private final int size;
+    private final String registrationCode;
 
     public CustomCar(String name, int size, String registrationCode) {
         this.name = name;
@@ -13,16 +13,16 @@ public class CustomCar implements Car {
 
     @Override
     public String name() {
-        return null;
+        return name;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public String registrationCode() {
-        return null;
+        return registrationCode;
     }
 }
