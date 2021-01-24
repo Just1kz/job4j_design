@@ -57,8 +57,8 @@ public class SimpleControlQuality implements ControlQuality {
 
     public static void main(String[] args) {
         Food food = new Food("eggs",
-                LocalDate.of(2021, 2, 22),
-                LocalDate.of(2021, 1, 5),
+                LocalDate.of(2021, 2, 25),
+                LocalDate.of(2021, 1, 20),
                 150.00,
                 0.00);
         Period base = Period.between(food.getCreateDate(), food.getExpirationDate());
