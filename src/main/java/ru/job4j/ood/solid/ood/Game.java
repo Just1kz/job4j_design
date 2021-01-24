@@ -19,7 +19,5 @@ public class Game {
         RulesManager rules = new Rules();
         GameManager gameManager = new Board(player1, player2, input, output, rules);
         gameManager.gamePlay();
-        //запуск игры Антон Х, Анна О
-        //в конструкторе доски должны быть все интерфейсы и 1 строка на старт игры после неё
     }
 }

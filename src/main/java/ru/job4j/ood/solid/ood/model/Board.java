@@ -23,6 +23,10 @@ public class Board implements GameManager {
         this.rules = rules;
     }
 
+    public int getSteps() {
+        return steps;
+    }
+
     //первичное представление и правила игры
     @Override
     public void gameRules() {
@@ -99,7 +103,6 @@ public class Board implements GameManager {
 
     //обработка хода игроком с учётом правил
     boolean step() throws Exception {
-        int[] rulesIndex = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         int index;
         String mark;
         do {
@@ -195,6 +198,7 @@ public class Board implements GameManager {
         if (winMark.equals(player2.getMark().toLowerCase())) {
             output.println("Победитель -> " + player2.getName());
         }
+        output.println("");
         output.println("Хотите сыграть снова?");
         String again = input.ask().toLowerCase();
         if (again.equals("да")) {

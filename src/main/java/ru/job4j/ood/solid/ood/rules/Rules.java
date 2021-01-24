@@ -15,19 +15,15 @@ public class Rules implements RulesManager {
 
     public int analyzeNextStep(String[][] x, Player player) {
         String mark = player.getMark().toLowerCase();
-        int rsl = 0;
-        int nextStep = checkHorizontalMark(x, mark);
+        int nextStep;
+        nextStep = checkHorizontalMark(x, mark);
         if (nextStep == 0) {
             nextStep = checkVerticalMark(x, mark);
         }
         if (nextStep == 0) {
             nextStep = checkDiagonalMark(x, mark);
         }
-        if (nextStep > 0) {
-            rsl = nextStep;
-            nextStep = 0;
-        }
-        return rsl;
+        return nextStep;
     }
 
     int checkHorizontalMark(String[][] x, String mark) {
