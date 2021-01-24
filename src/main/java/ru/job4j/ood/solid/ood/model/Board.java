@@ -171,7 +171,7 @@ public class Board implements GameManager {
         gameSettings();
         output.println("Игра началась!");
         output.printTable(gameTable);
-        while (!resultGame()) {
+        while (resultGame()) {
                     if (rules.rulesQueue(steps) == 1 || steps == 1) {
                         //first
                         output.println("Сделайте свой ход: " + player1.getName());
@@ -202,68 +202,70 @@ public class Board implements GameManager {
     public boolean resultGame() {
         String x = "х";
         String o = "о";
-        if (!checkHorizontalWinMark(gameTable, o)
-                || !checkVerticalWinMark(gameTable, o)
-                || !checkDiagonalWinMark(gameTable, o)) {
+        if (checkHorizontalWinMark(gameTable, o)
+                || checkVerticalWinMark(gameTable, o)
+                || checkDiagonalWinMark(gameTable, o)) {
             winMark = o;
             return false;
         }
-        if (!checkHorizontalWinMark(gameTable, x)
-                || !checkVerticalWinMark(gameTable, x)
-                || !checkDiagonalWinMark(gameTable, x)) {
+        if (checkHorizontalWinMark(gameTable, x)
+                || checkVerticalWinMark(gameTable, x)
+                || checkDiagonalWinMark(gameTable, x)) {
             winMark = x;
             return false;
-        } else {
-            return !checkFreePlaceOnGameTable(gameTable);
         }
+        if (!checkFreePlaceOnGameTable(gameTable)) {
+            return false;
+        }
+        return true;
     }
 
     boolean checkHorizontalWinMark(String[][] x, String mark) {
         for (String[] strings : x) {
             for (int y = 0; y < strings.length; y++) {
                 if (x[0][0].contains(mark) && x[0][1].contains(mark) && x[0][2].contains(mark)) {
-                    return false;
+                    return true;
                 }
                 if (x[1][0].contains(mark) && x[1][1].contains(mark) && x[1][2].contains(mark)) {
-                    return false;
+                    return true;
                 }
                 if (x[2][0].contains(mark) && x[2][1].contains(mark) && x[2][2].contains(mark)) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     boolean checkVerticalWinMark(String[][] x, String mark) {
         for (String[] strings : x) {
             for (int y = 0; y < strings.length; y++) {
                 if (x[0][0].contains(mark) && x[1][0].contains(mark) && x[2][0].contains(mark)) {
-                    return false;
+                    return true;
                 }
                 if (x[0][1].contains(mark) && x[1][1].contains(mark) && x[2][1].contains(mark)) {
-                    return false;
+                    return true;
                 }
                 if (x[0][2].contains(mark) && x[1][2].contains(mark) && x[2][2].contains(mark)) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     boolean checkDiagonalWinMark(String[][] x, String mark) {
         for (String[] strings : x) {
             for (int y = 0; y < strings.length; y++) {
                 if (x[0][0].contains(mark) && x[1][1].contains(mark) && x[2][2].contains(mark)) {
-                    return false;
+                    return true;
                 }
                 if (x[0][2].contains(mark) && x[1][1].contains(mark) && x[2][0].contains(mark)) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     boolean checkFreePlaceOnGameTable(String[][] x) {
