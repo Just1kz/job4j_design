@@ -8,9 +8,11 @@ public class ConsoleProgress implements Runnable {
                 int count = 0;
                 String[] process = {" \\ ", " | ", " / "};
                 while (!Thread.currentThread().isInterrupted()) {
-                    System.out.print("\rLoading ... " + process[count] + ".");
+                    System.out.print("\rLoading ... " + process[count++] + ".");
                     Thread.sleep(100);
-                    count = (count + 1) % process.length;
+                    if (count >= process.length) {
+                        count = 0;
+                    }
                 }
             } catch (InterruptedException e) {
             System.out.println("");
