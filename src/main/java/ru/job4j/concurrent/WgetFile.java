@@ -23,17 +23,17 @@ public class WgetFile implements Runnable {
              FileOutputStream fileOutputStream = new FileOutputStream("pom_tmp.xml")) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
+            long start = System.currentTimeMillis();
             while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                LocalDateTime start = LocalDateTime.now();
-                while (dataBuffer[1023] == 0) {
-                    System.out.println(dataBuffer[1022]);
-                }
-                LocalDateTime finish = LocalDateTime.now();
-                long factTime = start.until(finish, ChronoUnit.MILLIS);
+                long finish = System.currentTimeMillis();
+                long factTime = finish - start;
                 double normalTimeOfSpeed = (double) dataBuffer.length / speed;
-                int rslTime = (int) (normalTimeOfSpeed - factTime) * 1000;
-                Thread.sleep(Math.max(rslTime, 0));
-                System.out.println(rslTime);
+                System.out.println(factTime);
+                System.out.println(normalTimeOfSpeed);
+                if (factTime < normalTimeOfSpeed) {
+                    Thread.sleep((long) (normalTimeOfSpeed - factTime) * 1000);
+                    start = System.currentTimeMillis();
+                }
                 System.out.println("Loaded!");
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
             }
@@ -44,12 +44,10 @@ public class WgetFile implements Runnable {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String url = args[0];
-        int speed = Integer.parseInt(args[1]);
+        String url = "https://raw.githubusercontent.com/peterarsentev/course_test/master/pom.xml";
+        int speed = 100;
         Thread wget = new Thread(new WgetFile(url, speed));
         wget.start();
         wget.join();
-        //параметры конфигурации:
-        //https://raw.githubusercontent.com/peterarsentev/course_test/master/pom.xml 50
     }
 }
