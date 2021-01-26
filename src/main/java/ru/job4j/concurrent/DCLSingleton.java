@@ -17,4 +17,22 @@ public class DCLSingleton {
 
     private DCLSingleton() {
     }
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread1 = new Thread(() -> {
+            while (inst == null) {
+                System.out.println(Thread.currentThread().getName());
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        );
+        thread1.start();
+        Thread.sleep(1000);
+        instOf();
+        thread1.join();
+    }
 }
