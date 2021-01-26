@@ -44,8 +44,12 @@ public class WgetFile implements Runnable {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String url = "https://raw.githubusercontent.com/peterarsentev/course_test/master/pom.xml";
-        int speed = 100;
+        String url = null;
+        int speed = 0;
+        if (args.length >= 2) {
+            url = args[0];
+            speed = Integer.parseInt(args[1]);
+        }
         Thread wget = new Thread(new WgetFile(url, speed));
         wget.start();
         wget.join();
