@@ -44,13 +44,13 @@ public class CustomParking implements Parking {
             parkingLittleCar.add(car);
             return true;
         }
-        if (car.size() == 2
-                && (nowCarPlacedBig + 1) <= sizeBig) {
-            nowCarPlacedBig = nowCarPlacedBig + 1;
+        if (car.size() > 1
+                && (nowCarPlacedBig + car.size()) <= sizeBig) {
+            nowCarPlacedBig = nowCarPlacedBig + car.size();
             parkingBigCar.add(car);
             return true;
         }
-        System.out.println("Вы пытаетесь поместить в парковку машину не соответствующего типа");
+        System.out.println("Парковка занята, извините!");
         return false;
     }
 }
