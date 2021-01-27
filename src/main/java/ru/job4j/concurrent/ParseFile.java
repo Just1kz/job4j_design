@@ -24,17 +24,6 @@ public class ParseFile {
                 output.append((char) data);
             }
 
-            try (PrintWriter output2 = new PrintWriter(new FileOutputStream(this.path))) {
-                for (int iz = 0; iz < output.length(); iz += 1) {
-                    output2.write(output.charAt(iz));
-                }
-                output2.write(System.lineSeparator());
-                output2.write("FirstThread is done Work");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
