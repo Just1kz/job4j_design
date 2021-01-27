@@ -5,13 +5,13 @@ import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
 @ThreadSafe
-public class UserX {
+public class People {
     @GuardedBy("this")
     private int id;
     @GuardedBy("this")
     private int amount;
 
-    public UserX(int id, int amount) {
+    public People(int id, int amount) {
         this.id = id;
         this.amount = amount;
     }
