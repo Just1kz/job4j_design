@@ -43,12 +43,17 @@ public class CustomParking implements Parking {
             nowCarPlacedLittle = nowCarPlacedLittle + car.size();
             parkingLittleCar.add(car);
             return true;
-        }
-        if (car.size() > 1
-                && (nowCarPlacedBig + car.size()) <= sizeBig) {
-            nowCarPlacedBig = nowCarPlacedBig + car.size();
-            parkingBigCar.add(car);
-            return true;
+        } else {
+            if ((nowCarPlacedBig + car.size()) <= sizeBig) {
+                nowCarPlacedBig = nowCarPlacedBig + car.size();
+                parkingBigCar.add(car);
+                return true;
+            }
+            if ((nowCarPlacedLittle + car.size()) <= sizeLittle) {
+                nowCarPlacedLittle = nowCarPlacedLittle + car.size();
+                parkingLittleCar.add(car);
+                return true;
+            }
         }
         System.out.println("Парковка занята, извините!");
         return false;
