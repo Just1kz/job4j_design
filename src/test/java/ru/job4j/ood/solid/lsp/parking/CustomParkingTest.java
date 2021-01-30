@@ -34,7 +34,7 @@ public class CustomParkingTest {
 
     @Test
     public void whenSearchCarInParking() {
-        Parking parking = new CustomParking(10, 1, 9, 0);
+        Parking parking = new CustomParking(10, 10, 5, 5);
         Car car = new CustomCar("Audi TT", 1, "ип406з");
         Car car2 = new CustomCar("КАМАЗ", 2, "зв345у");
         parking.addCar(car2);

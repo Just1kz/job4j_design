@@ -1,5 +1,7 @@
 package ru.job4j.ood.solid.lsp.parking;
 
+import java.util.Objects;
+
 public class CustomCar implements Car {
     private final String name;
     private final int size;
@@ -24,5 +26,22 @@ public class CustomCar implements Car {
     @Override
     public String registrationCode() {
         return registrationCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CustomCar customCar = (CustomCar) o;
+        return Objects.equals(registrationCode, customCar.registrationCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(registrationCode);
     }
 }
