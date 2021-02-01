@@ -71,6 +71,7 @@ public class SimpleControlQualityTest {
         Assert.assertThat(input.clear().toString(), is(output.toString()));
     }
 
+    @Ignore
     @Test
     public void controlQualityWarehouse() {
         input.add(warehouse);
