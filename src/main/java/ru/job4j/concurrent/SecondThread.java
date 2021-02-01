@@ -5,7 +5,7 @@ public class SecondThread implements Runnable {
     public void run() {
         ParseFile parseFile = new ParseFile("result.txt");
         parseFile.saveContent(
-                parseFile.getContentWithoutUnicode(), "result2.txt"
+                parseFile.getContent(x -> x == 2), "result2.txt"
         );
         System.out.println(Thread.currentThread().getName()
                 + " завершил загрузку первой");

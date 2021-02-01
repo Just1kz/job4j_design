@@ -3,6 +3,7 @@ package ru.job4j.concurrent;
 import net.jcip.annotations.Immutable;
 
 import java.io.*;
+import java.util.function.Predicate;
 
 @Immutable
 public class ParseFile {
@@ -16,27 +17,19 @@ public class ParseFile {
         return path;
     }
 
-    public synchronized String getContent() {
+    public synchronized String getContent(Predicate<Integer> predicate) {
         StringBuilder output = new StringBuilder();
         try (BufferedReader i = new BufferedReader(new FileReader(this.path))) {
             int data;
-            while ((data = i.read()) > 0) {
-                output.append((char) data);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return output.toString();
-    }
-
-    public synchronized String getContentWithoutUnicode() {
-        StringBuilder output = new StringBuilder();
-        try (BufferedReader input = new BufferedReader(new FileReader(this.path))) {
-            int data;
-            while ((data = input.read()) > 0) {
-                if (data < 0x80) {
+            if (predicate.test(1)) {
+                while ((data = i.read()) > 0) {
                     output.append((char) data);
+                }
+            } else {
+                while ((data = i.read()) > 0) {
+                    if (data < 0x80) {
+                        output.append((char) data);
+                    }
                 }
             }
         } catch (Exception e) {
