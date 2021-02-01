@@ -21,11 +21,7 @@ public class CountBarrier {
 
     public void count() throws InterruptedException {
         synchronized (monitor) {
-            while (count != total) {
-                count++;
-                System.out.println(count);
-                Thread.sleep(1000);
-            }
+            count++;
             monitor.notifyAll();
         }
     }
