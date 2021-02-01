@@ -21,15 +21,9 @@ public class ParseFile {
         StringBuilder output = new StringBuilder();
         try (BufferedReader i = new BufferedReader(new FileReader(this.path))) {
             int data;
-            if (predicate.test(1)) {
-                while ((data = i.read()) > 0) {
+            while ((data = i.read()) > 0) {
+                if (predicate.test(data)) {
                     output.append((char) data);
-                }
-            } else {
-                while ((data = i.read()) > 0) {
-                    if (data < 0x80) {
-                        output.append((char) data);
-                    }
                 }
             }
         } catch (Exception e) {
