@@ -22,6 +22,7 @@ public class CountBarrier {
     public void count() throws InterruptedException {
         synchronized (monitor) {
             count++;
+            System.out.println(count);
             monitor.notifyAll();
         }
     }
