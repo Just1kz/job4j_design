@@ -7,7 +7,7 @@ public class MultiCounter {
                 () -> {
                     System.out.println(Thread.currentThread().getName() + " started");
                     try {
-                        while(countBarrier.getCount() != countBarrier.getTotal()) {
+                        while (countBarrier.getCount() != countBarrier.getTotal()) {
                             countBarrier.count();
                         }
                     } catch (InterruptedException e) {
