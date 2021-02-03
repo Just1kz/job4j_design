@@ -3,12 +3,14 @@ package ru.job4j.concurrent;
 
 import static org.hamcrest.Matchers.is;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import java.util.concurrent.atomic.AtomicReference;
 
 
 public class CashTest {
 
+    @Ignore
     @Test
     public void test() throws InterruptedException {
         AtomicReference<Exception> ex = new AtomicReference<>();
