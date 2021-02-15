@@ -3,3 +3,4 @@
 [![codecov](https://codecov.io/gh/Just1kz/job4j_design/branch/master/graph/badge.svg?token=1ZTL4A4MX1)](https://codecov.io/gh/Just1kz/job4j_design)
 "В курсе производилась работа с веткамы git."
 "Объединение зафиксированных изменений"
+изменения по заданию task_124176
